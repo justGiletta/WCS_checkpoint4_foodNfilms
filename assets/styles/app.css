@@ -85,3 +85,43 @@ h1 {
     font-size: 155px;
     letter-spacing: 2px;
 }
+
+/* Admin menu start */
+.main-sidebar {
+    background: var(--gold_brown);
+    padding: 10px;
+}
+.content-header {
+    background: transparent;
+}
+.content-header:before,
+.content-header:after {
+    background: transparent !important;
+}
+.action-new,
+.action-save {
+    display: inline-block;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 18px;
+    border-radius: 20px;
+    background-color: var(--gold_brown);
+    color: var(--white);
+    transition: all .4s ease;
+}
+.action-new:hover,
+.action-save:hover {
+    background-color: transparent;
+    border-color: var(--orange);
+    color: var(--orange);
+}
+.action-new:active,
+.action-save:active {
+    background-color: transparent !important;
+    border-color: var(--orange);
+    color: var(--orange) !important;
+}
+
+/* Admin menu end */
