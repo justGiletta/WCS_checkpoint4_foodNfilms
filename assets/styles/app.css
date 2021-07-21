@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 :root {
@@ -35,6 +35,19 @@ body {
     color: var(--white);
     letter-spacing: 2px;
 }
+#active {
+    color: var(--orange) !important;
+}
+#navbar a:hover {
+    color: var(--orange);
+}
+
 #search {
     color: var(--orange);
+}
+.carousel-inner h1 {
+    color: var(--orange);
+    font-family: var(--titlefont);
+    font-size: 155px;
+    letter-spacing: 2px;
 }

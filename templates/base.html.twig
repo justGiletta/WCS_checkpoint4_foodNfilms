@@ -21,7 +21,7 @@
                 </div>
             {% endfor %}
         {% endfor %}
-        <div class="main">
+        <div class="main mb-5">
             <div class="d-flex justify-content-end mt-3">
                 {# {{ path('search') }} #}
                 <form class="d-flex" action="#" method="get" >
@@ -31,6 +31,13 @@
             </div>
             {% block body %}{% endblock %}
         </div>
+        <footer class="footer mt-auto py-3">
+            <div class="container text-center">
+                <a href="#"><img src="{{ asset('build/images/RS/facebook.png')}}" height="35px" alt=""></a>
+                <a href="#"><img src="{{ asset('build/images/RS/linkedin.png')}}" height="30px" alt=""></a>
+                <a href="#"><img src="{{ asset('build/images/RS/tweeter.png')}}" height="35px" alt=""></a>
+            </div>
+        </footer>
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
