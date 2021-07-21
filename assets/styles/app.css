@@ -1,3 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Modak&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+:root {
+    --titlefont: 'Modak', cursive;
+    --textfont: 'Spartan', sans-serif;
+    --blue_text: #11224d;
+    --yellow_bg: #fffadc;
+    --yellow_nav: #fffadc;
+    --orange: #f77f41;
+    --gold_brown: #c0935e;
+    --white: #ffffff;
+}
+
 body {
-    background-color: lightgray;
+    background-color: var(--yellow_bg);
+}
+.main {
+    margin: 5px;
+}
+
+#navbar {
+    background-color: var(--gold_brown);
+    font-family: var(--titlefont);
+    font-size: 35px;
+}
+#navbar a {
+    color: var(--white);
+    letter-spacing: 2px;
+}
+#search {
+    color: var(--orange);
 }
