@@ -8,7 +8,9 @@
 ## Install
 
 ```sh
-composer install, composer install, yarn install
+composer install, yarn install
+bin/console doctrine:migrations:migrate
+
 ```
 
 ## Author
