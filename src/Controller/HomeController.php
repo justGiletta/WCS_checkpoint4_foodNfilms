@@ -118,7 +118,7 @@ class HomeController extends AbstractController
     public function blogIndex(BlogRepository $blogRepository): Response
     {
         return $this->render('blog/index.html.twig', [
-            'articles' => $blogRepository->findAll(),
+            'blogs' => $blogRepository->findAll(),
         ]);
     }
     /**
@@ -130,7 +130,7 @@ class HomeController extends AbstractController
     {
         if(!$blog){
             throw $this->createNotFoundException(
-                'No serie '.$blog.' found.'
+                'No '.$blog.' found.'
             );
         }
 
