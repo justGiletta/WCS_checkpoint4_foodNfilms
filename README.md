@@ -10,6 +10,7 @@
 ```sh
 composer install, yarn install
 bin/console doctrine:migrations:migrate
+bin/console d:f:l
 
 ```
 
