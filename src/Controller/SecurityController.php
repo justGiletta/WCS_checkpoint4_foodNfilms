@@ -50,7 +50,7 @@ class SecurityController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('success', 'Vous êtes bien enregistrés ! Vous pouvez vous connecter grâce au donut 	&uarr; ');
+            $this->addFlash('success', 'Vous êtes bien enregistrés ! Vous pouvez vous connecter grâce au donut');
 
             return $this->redirectToRoute('home');
         }
