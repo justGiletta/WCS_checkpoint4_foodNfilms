@@ -25,9 +25,11 @@
 				<div class="card-body">
 					<div class="d-flex justify-content-end">
 						<h2 class="card-title">{{recipe.title}}</h2>
+						{% if app.user %}
 						<a id="favlist_recipe" class="ms-4 p-2 text-end" href="{{ path('favoris_recipe', { 'slug' : recipe.slug })}}">
 							<i class="bi {{ app.user.isInFavlistRecipe(recipe) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
 						</a>
+						{% endif %}
 					</div>
 					<p class="card-text">{{recipe.description}}</p>
 					<p class="card-text">
