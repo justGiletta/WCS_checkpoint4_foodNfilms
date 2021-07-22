@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Modak&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
 
 * {
     margin: 0;
@@ -9,6 +10,7 @@
 }
 
 :root {
+    --navfont: 'Otomanopee One', sans-serif;
     --titlefont: 'Modak', cursive;
     --textfont: 'Spartan', sans-serif;
     --blue_text: #11224d;
@@ -41,6 +43,13 @@ h1 {
     letter-spacing: 2px;
     text-transform: uppercase;
 }
+h2 {
+    color: var(--blue_text);
+    font-family: var(--titlefont);
+    font-size: 30px !important;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
 .button {
     display: inline-block;
     border: 1px solid transparent;
@@ -61,7 +70,7 @@ h1 {
 
 #navbar {
     background-color: var(--gold_brown);
-    font-family: var(--titlefont);
+    font-family: var(--navfont);
     font-size: 30px;
 }
 #navbar a {
@@ -82,8 +91,11 @@ h1 {
 .carousel-inner h1 {
     color: var(--orange);
     font-family: var(--titlefont);
-    font-size: 155px;
+    font-size: 155px !important;
     letter-spacing: 2px;
+}
+.pagination li a {
+    color: var(--orange)!important;
 }
 
 /* Admin menu start */

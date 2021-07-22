@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
 	<div class="container-fluid">
-	  <a class="me-5" href="{{ path('home') }}"><img src="{{ asset('build/images/Logos/FnF_logo.png') }}" width="100" height="100" class="ms-2" alt="Food'n Films logo"></a>
+		{% if is_granted('ROLE_ADMIN') %}
+		<a class="me-5" href="{{ path('admin') }}"><img src="{{ asset('build/images/Logos/FnF_logo.png') }}" width="100" height="100" class="ms-2" alt="Food'n Films logo"></a>
+		{% else %}
+		<a class="me-5" href="{{ path('home') }}"><img src="{{ asset('build/images/Logos/FnF_logo.png') }}" width="100" height="100" class="ms-2" alt="Food'n Films logo"></a>
+		{% endif %}
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -20,7 +24,7 @@
 				</li>
 				{% if app.user %}
 				<li class="nav-item">
-					<a class="nav-link {% if page == 'blog'%} active {% else %} {% endif %}" href="#">Mes favoris</a>
+					<a class="nav-link {% if page == 'blog'%} active {% else %} {% endif %}" href="{{ path('my_account', {'id' : app.user.id}) }}">Mes favoris</a>
 				</li>
 				{% endif %}
 			</ul>

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- BLOG{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+	<div class="row">
+		<div class="col-10 mt-5">
+			<div class="card">
+				<div class="card-body">
+					<h2 class="card-title">{{blog.title}}</h2>
+					<p class="card-text">{{blog.summary}}</p>
+					<p class="card-text">
+						<small class="text-muted">#{{blog.continent}}</small>
+					</p>
+				</div>
+				<img src="{{blog.poster}}" class="card-img-bottom" alt="...">
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

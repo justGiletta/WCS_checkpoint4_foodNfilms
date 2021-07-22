@@ -3,17 +3,37 @@
 {% block title %}- FILMS{% endblock %}
 
 {% block body %}
-<div class="card-group mt-5">
-    {% for film in films %}
-        <div class="card bg-dark text-white">
-        <img src="{{ asset('build/images/{{ film.poster }}') }}" class="card-img" alt="...">
-        <div class="card-img-overlay">
-            <h5 class="card-title">{{ film.title }}</h5>
-            <p class="card-text">{{ film.summary }}</p>
+<div class="container my-5">
+    <div class="row">
+        {% for film in films %}
+        <div class="col-sm-4 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title"><a href="{{ path('film_show', { 'slug' : film.slug }) }}">{{film.title}}</a></h2>
+                    <p class="card-text">{{film.summary}}</p>
+                    <p class="card-text"><small class="text-muted">#{{film.continent}}</small></p>
+                </div>
+                <img src="{{film.poster}}" class="card-img-bottom" alt="...">
+            </div>
         </div>
-        <div class="card-footer bg-transparent border-success"><small class="text-muted">#{{ film.continent }}</small></div>
-        </div>
-                        {# <a class="btn btn-outline-secondary" href="{{ path('book_show', { 'idBook' : indexBook.id }) }}">Voir</a> #}
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
+<section class="d-flex justify-content-end me-5">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</section>
 {% endblock %}

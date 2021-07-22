@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Blog;
+use App\Entity\Continent;
 use App\Entity\Film;
 use App\Entity\Serie;
 use App\Entity\Recipe;
@@ -37,6 +38,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+        yield MenuItem::linkToCrud('Catégories', 'fa fa-tags', Continent::class);
         yield MenuItem::linkToCrud('Films', 'fa fa-tags', Film::class);
         yield MenuItem::linkToCrud('Series', 'fa fa-tags', Serie::class);
         yield MenuItem::linkToCrud('Recettes', 'fa fa-tags', Recipe::class);

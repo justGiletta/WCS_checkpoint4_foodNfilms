@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- RECETTE{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+	<div class="row">
+		<div class="col-8 mt-5">
+			<div class="card">
+				<div class="card-body">
+					<h2 class="card-title">{{recipe.title}}</h2>
+					<p class="card-text">{{recipe.description}}</p>
+					<p class="card-text">
+						<small class="text-muted">#{{recipe.continent}}</small>
+					</p>
+				</div>
+				<img src="{{recipe.poster}}" class="card-img-bottom" alt="...">
+			</div>
+		</div>
+		{% if recipe.film is not null %}
+		<div class="col-4 mt-5">
+			<div class="card">
+				<div class="card-body">
+					<h2 class="card-title">{{recipe.film.title}}</h2>
+					<p class="card-text">{{recipe.film.summary}}</p>
+					<p class="card-text">
+						<small class="text-muted">#{{recipe.film.continent}}</small>
+					</p>
+				</div>
+				<img src="{{recipe.film.poster}}" class="card-img-bottom" alt="...">
+			</div>
+			<div class="d-flex justify-content-end">
+				<a class="button mt-5 me-3" href="{{ path('film') }}">Films</a>
+				<a class="button mt-5 me-3" href="{{ path('recipe') }}">Recettes</a>
+			</div>
+		</div>
+		{% elseif recipe.serie is not null %}
+			<div class="col-4 mt-5">
+				<div class="card">
+					<div class="card-body">
+						<h2 class="card-title">{{recipe.serie.title}}</h2>
+						<p class="card-text">{{recipe.serie.summary}}</p>
+						<p class="card-text">
+							<small class="text-muted">#{{recipe.serie.continent}}</small>
+						</p>
+					</div>
+					<img src="{{recipe.serie.poster}}" class="card-img-bottom" alt="...">
+				</div>
+				<div class="d-flex justify-content-end">
+				<a class="button mt-5 me-3" href="{{ path('serie') }}">Séries</a>
+				<a class="button mt-5 me-3" href="{{ path('recipe') }}">Recettes</a>
+				</div>
+			</div>
+		{% endif %}
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Blog;
+use App\Entity\Film;
+use App\Entity\Recipe;
+use App\Entity\Serie;
 use App\Entity\User;
 use App\Form\ContactType;
 use App\Repository\BlogRepository;
@@ -35,6 +39,23 @@ class HomeController extends AbstractController
             'films' => $filmRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/film/{slug}", methods={"GET"}, name="film_show")
+     *
+     *@return Response
+     */
+    public function filmShow(FilmRepository $filmRepository, Film $film): Response
+    {
+        if(!$film){
+            throw $this->createNotFoundException(
+                'No film '.$film.' found.'
+            );
+        }
+
+        return $this->render('film/show.html.twig', [
+            'film' => $film,
+        ]);
+    }
 
     /**
      * @Route("/recipe", name="recipe")
@@ -43,6 +64,23 @@ class HomeController extends AbstractController
     {
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipeRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/recipe/{slug}", methods={"GET"}, name="recipe_show")
+     *
+     *@return Response
+     */
+    public function recipeShow(RecipeRepository $recipeRepository, Recipe $recipe): Response
+    {
+        if(!$recipe){
+            throw $this->createNotFoundException(
+                'No recipe '.$recipe.' found.'
+            );
+        }
+
+        return $this->render('recipe/show.html.twig', [
+            'recipe' => $recipe,
         ]);
     }
 
@@ -55,6 +93,23 @@ class HomeController extends AbstractController
             'series' => $serieRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/serie/{slug}", methods={"GET"}, name="serie_show")
+     *
+     *@return Response
+     */
+    public function serieShow(SerieRepository $serieRepository, Serie $serie): Response
+    {
+        if(!$serie){
+            throw $this->createNotFoundException(
+                'No serie '.$serie.' found.'
+            );
+        }
+
+        return $this->render('serie/show.html.twig', [
+            'serie' => $serie,
+        ]);
+    }
 
     /**
      * @Route("/blog", name="blog")
@@ -63,6 +118,23 @@ class HomeController extends AbstractController
     {
         return $this->render('blog/index.html.twig', [
             'articles' => $blogRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/blog/{slug}", methods={"GET"}, name="blog_show")
+     *
+     *@return Response
+     */
+    public function blogShow(BlogRepository $blogRepository, Blog $blog): Response
+    {
+        if(!$blog){
+            throw $this->createNotFoundException(
+                'No serie '.$blog.' found.'
+            );
+        }
+
+        return $this->render('blog/show.html.twig', [
+            'blog' => $blog,
         ]);
     }
 

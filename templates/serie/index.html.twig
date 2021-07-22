@@ -1,20 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SerieController!{% endblock %}
+{% block title %}- SÉRIES{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/justine/Desktop/WCS_checkpoint4_foodNfilms/src/Controller/SerieController.php'|file_link(0) }}">src/Controller/SerieController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/justine/Desktop/WCS_checkpoint4_foodNfilms/templates/serie/index.html.twig'|file_link(0) }}">templates/serie/index.html.twig</a></code></li>
-    </ul>
+<div class="container my-5">
+    <div class="row">
+        {% for serie in series %}
+        <div class="col-sm-4 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title"><a href="{{ path('serie_show', { 'slug' : serie.slug }) }}">{{serie.title}}</a></h2>
+                    <p class="card-text">{{serie.summary}}</p>
+                    <p class="card-text"><small class="text-muted">#{{serie.continent}}</small></p>
+                </div>
+                <img src="{{serie.poster}}" class="card-img-bottom" alt="...">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+<section class="d-flex justify-content-end me-5">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</section>
 {% endblock %}

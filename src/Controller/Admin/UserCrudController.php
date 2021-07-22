@@ -26,7 +26,8 @@ class UserCrudController extends AbstractCrudController
                 'User' => 'ROLE_USER',
                 'Admin' => 'ROLE_ADMIN',
             ]);
+        $password = TextField::new('password')->hideOnIndex();
 
-        return [$name, $email, $roles];
+        return [$name, $email, $roles, $password];
     }
 }
