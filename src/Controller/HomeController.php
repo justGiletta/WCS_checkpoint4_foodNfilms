@@ -13,6 +13,7 @@ use App\Repository\FilmRepository;
 use App\Repository\RecipeRepository;
 use App\Repository\SerieRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -143,7 +144,10 @@ class HomeController extends AbstractController
      */
     public function myAccount(UserRepository $userRepository, User $user): Response
     {
+        $recipes = $user->getFavlistRecipe();
+
         return $this->render('home/my_account.html.twig', [
+            'recipes' => $recipes,
             'user' => $user,
         ]);
     }
@@ -172,6 +176,25 @@ class HomeController extends AbstractController
 
         return $this->render('home/contact.html.twig', [
             'contactForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/favoris_recipe/{slug}", name="favoris_recipe", methods={"GET","POST"})
+     */
+    public function addToFavlistRecipe(Request $request, EntityManagerInterface $entityManager, Recipe $recipe): Response
+    {
+        if ($this->getUser()->isInFavlistRecipe($recipe) === true) {
+            $this->getUser()->removeFromFavlistRecipe($recipe);
+        } else {
+            $this->getUser()->addToFavlistRecipe($recipe);
+            $entityManager->persist($recipe);
+        }
+
+        $entityManager->flush();
+
+        return $this->json([
+            'isInFavlistRecipe' => $this->getUser()->isInFavlistRecipe($recipe)
         ]);
     }
 

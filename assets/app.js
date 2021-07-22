@@ -10,3 +10,26 @@ import './styles/app.css';
 // start the Stimulus application
 // import './bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+
+// Favoris
+document.querySelector('#favlist_recipe').addEventListener('click', addToFavlistRecipe)
+
+function addToFavlistRecipe(event) {
+    event.preventDefault();
+    let favlistLink = event.currentTarget;
+    let link = favlistLink.href;
+
+    fetch(link)
+        .then(res => res.json())
+        .then(function(res) {
+            let favlistIcon = favlistLink.firstElementChild ;
+            if (res.isInFavlistRecipe) {
+                favlistIcon.classList.remove('bi-heart');
+                favlistIcon.classList.add('bi-heart-fill');
+            } else {
+                favlistIcon.classList.remove('bi-heart-fill');
+                favlistIcon.classList.add('bi-heart');
+            }
+        });
+
+}

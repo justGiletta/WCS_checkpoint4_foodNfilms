@@ -40,19 +40,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Recipe::class, inversedBy="users")
-     */
-    private $recipe;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Recipe::class, inversedBy="users")
+     */
+    private $favlistRecipe;
+
     public function __construct()
     {
-        $this->recipe = new ArrayCollection();
+        $this->relation = new ArrayCollection();
+        $this->favlistRecipe = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -143,30 +145,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection|Recipe[]
-     */
-    public function getRecipe(): Collection
-    {
-        return $this->recipe;
-    }
-
-    public function addRecipe(Recipe $recipe): self
-    {
-        if (!$this->recipe->contains($recipe)) {
-            $this->recipe[] = $recipe;
-        }
-
-        return $this;
-    }
-
-    public function removeRecipe(Recipe $recipe): self
-    {
-        $this->recipe->removeElement($recipe);
-
-        return $this;
-    }
-
     public function getName(): ?string
     {
         return $this->name;
@@ -177,5 +155,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->name = $name;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Recipe[]
+     */
+    public function getFavlistRecipe(): Collection
+    {
+        return $this->favlistRecipe;
+    }
+
+    public function addToFavlistRecipe(Recipe $favlistRecipe): self
+    {
+        if (!$this->favlistRecipe->contains($favlistRecipe)) {
+            $this->favlistRecipe[] = $favlistRecipe;
+        }
+
+        return $this;
+    }
+
+    public function removeFromFavlistRecipe(Recipe $favlistRecipe): self
+    {
+        $this->favlistRecipe->removeElement($favlistRecipe);
+
+        return $this;
+    }
+
+    public function isInFavlistRecipe(Recipe $recipe): bool
+    {
+        if ($this->favlistRecipe->contains($recipe)) {
+            return true;
+        }
+        return false;
     }
 }

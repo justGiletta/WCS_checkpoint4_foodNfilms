@@ -55,7 +55,7 @@ class Recipe
     private $serie;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="recipe")
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favlistRecipe")
      */
     private $users;
 
@@ -63,6 +63,7 @@ class Recipe
     {
         $this->users = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -165,7 +166,7 @@ class Recipe
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->addRecipe($this);
+            $user->addToFavlistRecipe($this);
         }
 
         return $this;
@@ -174,7 +175,7 @@ class Recipe
     public function removeUser(User $user): self
     {
         if ($this->users->removeElement($user)) {
-            $user->removeRecipe($this);
+            $user->removeFromFavlistRecipe($this);
         }
 
         return $this;

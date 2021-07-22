@@ -8,9 +8,14 @@
 		<div class="col-8 mt-5">
 			<div class="card">
 				<div class="card-body">
-					<h2 class="card-title">{{recipe.title}}</h2>
+					<div class="d-flex justify-content-end">
+						<h2 class="card-title">{{recipe.title}}</h2>
+						<a id="favlist_recipe" class="ms-4 p-2 text-end" href="{{ path('favoris_recipe', { 'slug' : recipe.slug })}}">
+							<i class="bi {{ app.user.isInFavlistRecipe(recipe) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
+						</a>
+					</div>
 					<p class="card-text">{{recipe.description}}</p>
-					<p class="card-text">
+					<p class="card-text d-flex justify-content-start">
 						<small class="text-muted">#{{recipe.continent}}</small>
 					</p>
 				</div>
