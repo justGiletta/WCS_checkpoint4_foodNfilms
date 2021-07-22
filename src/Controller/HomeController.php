@@ -3,13 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ContactType;
 use App\Repository\BlogRepository;
 use App\Repository\FilmRepository;
 use App\Repository\RecipeRepository;
 use App\Repository\SerieRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
@@ -69,6 +73,33 @@ class HomeController extends AbstractController
     {
         return $this->render('home/my_account.html.twig', [
             'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact(Request $request, MailerInterface $mailer): Response
+    {
+        $form = $this->createForm(ContactType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contactFormData = $form->getData();
+
+            $message = (new Email())
+                ->from($this->getParameter('mailer_from'))
+                ->to('your_email@example.com')
+                ->subject('Food\'n Films : vous avez reçu un email')
+                ->html($this->renderView('home/contactEmail.html.twig', ['contactFormData' => $contactFormData]));
+            $mailer->send($message);
+            $this->addFlash('success', 'Votre message a bien été envoyé');
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('home/contact.html.twig', [
+            'contactForm' => $form->createView(),
         ]);
     }
 
