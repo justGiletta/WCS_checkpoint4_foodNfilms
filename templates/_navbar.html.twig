@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+	<div class="container-fluid">
+		{% if is_granted('ROLE_ADMIN') %}
+		<a class="me-5" href="{{ path('admin') }}"><img src="{{ asset('build/images/Logos/FnF_logo.png') }}" width="100" height="100" class="ms-2" alt="Food'n Films logo"></a>
+		{% else %}
+		<a class="me-5" href="{{ path('home') }}"><img src="{{ asset('build/images/Logos/FnF_logo.png') }}" width="100" height="100" class="ms-2" alt="Food'n Films logo"></a>
+		{% endif %}
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
+				<li class="nav-item">
+					<a class="nav-link me-lg-4" id="{% if page == 'film'%}active{% else %}{% endif %}" href="{{ path('film') }}">Films</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link me-lg-4" id="{% if page == 'serie'%}active{% else %}{% endif %}" href="{{ path('serie') }}">Séries</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link me-lg-4" id="{% if page == 'recipe'%}active{% else %}{% endif %}" href="{{ path('recipe') }}">Recettes</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link me-lg-4" id="{% if page == 'blog'%}active{% else %}{% endif %}" href="{{ path('blog') }}">Blog</a>
+				</li>
+				{% if app.user %}
+				<li class="nav-item">
+					<a class="nav-link me-lg-4" id="{% if page == 'my_account'%}active{% else %}{% endif %}" href="{{ path('my_account', {'id' : app.user.id}) }}">Favlist</a>
+				</li>
+				{% endif %}
+			</ul>
+		</div>
+		<div class="d-flex justify-content-end">
+			{% if app.user %}
+          <a class="nav-link" href="{{ path('app_logout') }}"><img src="{{ asset('build/images/Logos/FnF_deconnexion.png') }}" width="100" height="100" class="ms-2" alt="Donut deconnexion"></a>
+        		{% else %}
+          <a class="nav-link" href="{{ path('app_login') }}"><img src="{{ asset('build/images/Logos/FnF_connexion.png') }}" width="100" height="100" class="ms-2" alt="Donut connexion"></a>
+        		{% endif %}
+		</div>
+	</div>
+</nav>

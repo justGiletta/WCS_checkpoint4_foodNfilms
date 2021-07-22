@@ -1,3 +1,139 @@
-body {
-    background-color: lightgray;
+@import url('https://fonts.googleapis.com/css2?family=Modak&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none !important;
 }
+
+:root {
+    --navfont: 'Otomanopee One', sans-serif;
+    --titlefont: 'Modak', cursive;
+    --textfont: 'Spartan', sans-serif;
+    --blue_text: #11224d;
+    --yellow_bg: #fffadc;
+    --yellow_nav: #fffadc;
+    --orange: #f77f41;
+    --gold_brown: #c0925ecd;
+    --white: #ffffff;
+}
+a {
+    color: var(--blue_text);
+}
+a:hover {
+    color: var(--orange);
+}
+
+body {
+    background-color: var(--yellow_bg);
+    font-family: var(--textfont);
+    color: var(--blue_text);
+}
+.main {
+    margin: 5px;
+    min-height: 75vh;
+}
+h1 {
+    color: var(--blue_text);
+    font-family: var(--titlefont);
+    font-size: 50px !important;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+h2 {
+    color: var(--blue_text);
+    font-family: var(--titlefont);
+    font-size: 30px !important;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.button {
+    display: inline-block;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 18px;
+    border-radius: 20px;
+    background-color: var(--gold_brown);
+    color: var(--white);
+    transition: all .4s ease;
+}
+.button:hover {
+    background-color: transparent;
+    border-color: var(--orange);
+    color: var(--orange);
+}
+
+#navbar {
+    background-color: var(--gold_brown);
+    font-family: var(--navfont);
+    font-size: 30px;
+}
+#navbar a {
+    color: var(--white);
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px var(--blue_text);
+}
+#active {
+    color: var(--orange) !important;
+}
+#navbar a:hover {
+    color: var(--orange);
+}
+
+#search {
+    color: var(--orange);
+}
+.carousel-inner h1 {
+    color: var(--orange);
+    font-family: var(--titlefont);
+    font-size: 155px !important;
+    letter-spacing: 2px;
+}
+.pagination li a {
+    color: var(--orange)!important;
+}
+
+/* Admin menu start */
+.main-sidebar {
+    background: var(--gold_brown);
+    padding: 10px;
+}
+.content-header {
+    background: transparent;
+}
+.content-header:before,
+.content-header:after {
+    background: transparent !important;
+}
+.action-new,
+.action-save {
+    display: inline-block;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 18px;
+    border-radius: 20px;
+    background-color: var(--gold_brown);
+    color: var(--white);
+    transition: all .4s ease;
+}
+.action-new:hover,
+.action-save:hover {
+    background-color: transparent;
+    border-color: var(--orange);
+    color: var(--orange);
+}
+.action-new:active,
+.action-save:active {
+    background-color: transparent !important;
+    border-color: var(--orange);
+    color: var(--orange) !important;
+}
+
+/* Admin menu end */

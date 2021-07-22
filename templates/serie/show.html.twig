@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- SÉRIE{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+	<div class="row">
+		<div class="col-4 mt-5">
+			<div class="card">
+				<div class="card-body">
+					<h2 class="card-title">{{serie.title}}</h2>
+					<p class="card-text">{{serie.summary}}</p>
+					<p class="card-text">
+						<small class="text-muted">#{{serie.continent}}</small>
+					</p>
+				</div>
+				<img src="{{serie.poster}}" class="card-img-bottom" alt="...">
+			</div>
+    <a class="button mt-5 text-center" href="{{ path('film') }}">Séries</a>
+    <a class="button mt-5 text-center" href="{{ path('recipe') }}">Recettes</a>
+		</div>
+    {% for recipe in serie.recipes %}
+		<div class="col-8 mt-5">
+			<div class="card">
+				<div class="card-body">
+					<div class="d-flex justify-content-end">
+						<h2 class="card-title">{{recipe.title}}</h2>
+						{% if app.user %}
+						<a id="favlist_recipe" class="ms-4 p-2 text-end" href="{{ path('favoris_recipe', { 'slug' : recipe.slug })}}">
+							<i class="bi {{ app.user.isInFavlistRecipe(recipe) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
+						</a>
+						{% endif %}
+					</div>
+					<p class="card-text">{{recipe.description}}</p>
+					<p class="card-text">
+						<small class="text-muted">#{{recipe.continent}}</small>
+					</p>
+				</div>
+				<img src="{{recipe.poster}}" class="card-img-bottom" alt="...">
+			</div>
+		</div>
+    {% endfor %}
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- SÉRIES{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row">
+        {% for serie in series %}
+        <div class="col-sm-4 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title"><a href="{{ path('serie_show', { 'slug' : serie.slug }) }}">{{serie.title}}</a></h2>
+                    <p class="card-text">{{serie.summary}}</p>
+                    <p class="card-text"><small class="text-muted">#{{serie.continent}}</small></p>
+                </div>
+                <img src="{{serie.poster}}" class="card-img-bottom" alt="...">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<section class="d-flex justify-content-end me-5">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</section>
+{% endblock %}

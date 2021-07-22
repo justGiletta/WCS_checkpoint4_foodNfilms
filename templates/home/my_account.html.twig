@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- MON COMPTE
+{% endblock %}
+
+{% block body %}
+	<div class="container my-5">
+		<div class="col-10 d-flex flex-column justify-content-end">
+			<h1 class="h3 mb-3 font-weight-normal">Mon compte</h1>
+			<p>{{user.name}}</p>
+			<p>{{user.email}}</p>
+		</div>
+		<div class="row">
+			{% for recipe in recipes %}
+				<div class="col-sm-4 mt-5">
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex justify-content-end">
+								<h2 class="card-title">
+									<a href="{{ path('recipe_show', { 'slug' : recipe.slug }) }}">{{recipe.title}}</a>
+								</h2>
+								<a id="favlist_recipe" class="ms-4 p-2 text-end" href="{{ path('favoris_recipe', { 'slug' : recipe.slug })}}">
+									<i class="bi {{ app.user.isInFavlistRecipe(recipe) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
+								</a>
+							</div>
+							<p class="card-text">{{recipe.description}}</p>
+							<p class="card-text">
+								<small class="text-muted">#{{recipe.continent}}</small>
+							</p>
+						</div>
+						<img src="{{recipe.poster}}" class="card-img-bottom" alt="...">
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<section class="d-flex justify-content-end me-5">
+		<ul class="pagination">
+			<li class="page-item">
+				<a class="page-link" href="#" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">1</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">2</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">3</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+{% endblock %}
+

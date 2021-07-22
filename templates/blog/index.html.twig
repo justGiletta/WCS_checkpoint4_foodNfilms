@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- SÉRIES{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row">
+        {% for blog in blogs %}
+        <div class="col-sm-4 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title"><a href="{{ path('blog_show', { 'slug' : blog.slug }) }}">{{blog.title}}</a></h2>
+                    <p class="card-text">{{blog.article}}</p>
+                </div>
+                <img src="{{blog.poster}}" class="card-img-bottom" alt="...">
+            </div>
+        </div>
+    {# <a class="btn btn-outline-secondary" href="{{ path('book_show', { 'idBook' : indexBook.id }) }}">Voir</a> #}
+        {% endfor %}
+    </div>
+    <section class="d-flex justify-content-end me-5">
+    <ul class="pagination">
+        <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+        </li>
+    </ul>
+    </section>
+</div>
+{% endblock %}

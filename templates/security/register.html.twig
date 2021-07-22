@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- NOUVEAU{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="d-flex justify-content-around">
+        <div class="col-7 d-flex flex-column justify-content-end">
+            <h1 class="h3 mb-3 font-weight-normal">Se créer un compte</h1>
+         </div>
+        <div class="col-5">
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.name) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Mot de passe'
+                }) }}
+                <button type="submit" class="button mt-3">Valider</button>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
